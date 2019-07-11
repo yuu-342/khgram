@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action: current_user
+  before_action :current_user
 
   protect_from_forgery with: :exception
 
@@ -22,5 +22,11 @@ class ApplicationController < ActionController::Base
   def sign_out
     @current_user = nil
     cookies.delete(:user_remember_token)
+  end
+
+  private
+
+  def require_sign_in!
+    redirect_to login_path unless sign_in?
   end
 end
