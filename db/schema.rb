@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190712084651) do
+ActiveRecord::Schema.define(version: 20190712085947) do
+
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.text "comment"
+    t.string "url"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.index ["user_id"], name: "index_photos_on_user_id"
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
